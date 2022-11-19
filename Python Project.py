@@ -42,6 +42,13 @@ def btn_enter():
             tax_str.set("${:,.2f}".format(float(tax1)))
 
 
+def btn_total(one, two, three):
+    two2 = (two.get())
+    three3 = (three.get())
+    new_total = float(two2.replace("$", "").replace(",", "")) + float(three3.replace("$", "").replace(",", ""))
+    one.set("${:,.2f}".format(new_total))
+
+
 expression = ""
 main_str = StringVar()
 subtotal_str = StringVar()
@@ -63,9 +70,10 @@ button9 = Button(final1, text="9", width=3, borderwidth=3, command=lambda: btn_c
 button0 = Button(final1, text="0", width=3, borderwidth=3, command=lambda: btn_click(0)).place(x=83, y=134)
 button_dot = Button(final1, text=".", width=3, borderwidth=3, command=lambda: btn_click(".")).place(x=116, y=134)
 
+total_btn = partial(btn_total, total_str, subtotal_str, tax_str)
 
 button_enter = Button(final1, text="Enter", width=7, borderwidth=3, command=btn_enter).place(x=170, y=50)
-button_total = Button(final1, text="Total", width=7, borderwidth=3).place(x=170, y=78)
+button_total = Button(final1, text="Total", width=7, borderwidth=3, command=total_btn).place(x=170, y=78)
 button_delete = Button(final1, text="Delete", width=7, borderwidth=3).place(x=170, y=106)
 button_clear = Button(final1, text="Clear", width=7, borderwidth=3).place(x=170, y=134)
 
@@ -81,5 +89,3 @@ total = Label(final1, textvariable=total_str, width=18, borderwidth=2, relief="s
     .place(x=123, y=265)
 
 final1.mainloop()
-
-
