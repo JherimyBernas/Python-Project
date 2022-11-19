@@ -49,6 +49,21 @@ def btn_total(one, two, three):
     one.set("${:,.2f}".format(new_total))
 
 
+def btn_delete():
+    global expression
+    expression = expression[:-1]
+    main_str.set(expression)
+
+
+def btn_clear():
+    global expression
+    expression = ""
+    main_str.set("")
+    subtotal_str.set("")
+    tax_str.set("")
+    total_str.set("")
+
+
 expression = ""
 main_str = StringVar()
 subtotal_str = StringVar()
@@ -74,8 +89,8 @@ total_btn = partial(btn_total, total_str, subtotal_str, tax_str)
 
 button_enter = Button(final1, text="Enter", width=7, borderwidth=3, command=btn_enter).place(x=170, y=50)
 button_total = Button(final1, text="Total", width=7, borderwidth=3, command=total_btn).place(x=170, y=78)
-button_delete = Button(final1, text="Delete", width=7, borderwidth=3).place(x=170, y=106)
-button_clear = Button(final1, text="Clear", width=7, borderwidth=3).place(x=170, y=134)
+button_delete = Button(final1, text="Delete", width=7, borderwidth=3, command=btn_delete).place(x=170, y=106)
+button_clear = Button(final1, text="Clear", width=7, borderwidth=3, command=btn_clear).place(x=170, y=134)
 
 subtotal_label = Label(final1, text="Subtotal:", anchor="w").place(x=30, y=185)
 tax_label = Label(final1, text="Tax:", anchor="w").place(x=30, y=225)
